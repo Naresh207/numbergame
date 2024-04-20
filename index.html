@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Games</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        #container {
+            display: flex;
+        }
+
+        #number {
+            font-size: 100px;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="number"></div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20'];
+            const numberContainer = document.getElementById('number');
+            
+            let index = 0;
+            
+            function displayNumber() {
+                numberContainer.textContent = numbers[index];
+            }
+            
+            function speakNumber(number) {
+                // Speak the number using ResponsiveVoice.js
+                responsiveVoice.speak(number, "US English Female");
+            }
+            
+            function nextNumber() {
+                index = (index + 1) % numbers.length;
+                displayNumber();
+                speakNumber(numbers[index]);
+            }
+            
+            // Initial display
+            displayNumber();
+            speakNumber(numbers[index]);
+            
+            // Set interval to change number every 3000ms (3 seconds)
+            setInterval(nextNumber, 3000);
+        });
+    </script>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=94pRi2HF"></script>
+</body>
+</html>
